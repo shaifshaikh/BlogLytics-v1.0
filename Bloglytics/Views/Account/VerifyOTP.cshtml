@@ -1,0 +1,377 @@
+﻿@using Bloglytics.DTO
+@model VerifyOTPViewModel
+@{
+    ViewData["Title"] = "Verify OTP - Bloglytics";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .otp-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 100%;
+            max-width: 450px;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @@keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .otp-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .otp-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .otp-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .otp-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .otp-body {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .otp-message {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .otp-inputs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        .otp-input {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+            .otp-input:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+        .btn-verify {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+            .btn-verify:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            }
+
+            .btn-verify:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+
+        .resend-section {
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .resend-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+            .resend-link:hover {
+                text-decoration: underline;
+            }
+
+            .resend-link.disabled {
+                color: #ccc;
+                pointer-events: none;
+            }
+
+        .timer {
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .alert {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-success {
+            background-color: #d1e7dd;
+            border: 1px solid #badbcc;
+            color: #0f5132;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border: 1px solid #f5c2c7;
+            color: #842029;
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto;
+        }
+
+        @@keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-verify.loading .btn-text {
+            display: none;
+        }
+
+        .btn-verify.loading .spinner {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <div class="otp-header">
+            <div class="otp-icon">📧</div>
+            <h1>Verify Your Email</h1>
+            <p>We've sent a code to your email</p>
+        </div>
+
+        <div class="otp-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["ErrorMessage"]
+                </div>
+            }
+
+            <p class="otp-message">
+                Please enter the 6-digit code sent to<br />
+                <strong>@Model.Email</strong>
+            </p>
+
+            <form asp-action="VerifyOTP" asp-controller="Account" method="post" id="otpForm">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="Email" />
+
+                <div class="otp-inputs">
+                    <input type="text" maxlength="1" class="otp-input" id="otp1" />
+                    <input type="text" maxlength="1" class="otp-input" id="otp2" />
+                    <input type="text" maxlength="1" class="otp-input" id="otp3" />
+                    <input type="text" maxlength="1" class="otp-input" id="otp4" />
+                    <input type="text" maxlength="1" class="otp-input" id="otp5" />
+                    <input type="text" maxlength="1" class="otp-input" id="otp6" />
+                </div>
+
+                <input type="hidden" asp-for="OTP" id="otpValue" />
+                <span asp-validation-for="OTP" class="text-danger"></span>
+
+                <button type="submit" class="btn-verify" id="verifyBtn">
+                    <span class="btn-text">Verify & Continue</span>
+                    <div class="spinner"></div>
+                </button>
+            </form>
+
+            <div class="resend-section">
+                Didn't receive the code?
+                <a href="#" class="resend-link" id="resendLink">Resend OTP</a>
+                <div class="timer" id="timer" style="display:none;">
+                    Resend available in <span id="countdown">60</span>s
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            const otpInputs = $('.otp-input');
+            let resendTimer;
+            let countdown = 60;
+
+            // OTP Input handling
+            otpInputs.on('input', function() {
+                const value = $(this).val();
+                if (value.length === 1) {
+                    $(this).next('.otp-input').focus();
+                }
+                updateOTPValue();
+            });
+
+            otpInputs.on('keydown', function(e) {
+                if (e.key === 'Backspace' && $(this).val() === '') {
+                    $(this).prev('.otp-input').focus();
+                }
+            });
+
+            // Paste handling
+            otpInputs.first().on('paste', function(e) {
+                e.preventDefault();
+                const pastedData = e.originalEvent.clipboardData.getData('text').replace(/\D/g, '');
+                const digits = pastedData.split('').slice(0, 6);
+
+                otpInputs.each(function(index) {
+                    if (digits[index]) {
+                        $(this).val(digits[index]);
+                    }
+                });
+
+                if (digits.length === 6) {
+                    otpInputs.last().focus();
+                }
+                updateOTPValue();
+            });
+
+            function updateOTPValue() {
+                let otp = '';
+                otpInputs.each(function() {
+                    otp += $(this).val();
+                });
+                $('#otpValue').val(otp);
+            }
+
+            // Form submission
+            $('#otpForm').on('submit', function(e) {
+                updateOTPValue();
+                const otp = $('#otpValue').val();
+
+                if (otp.length !== 6) {
+                    e.preventDefault();
+                    alert('Please enter all 6 digits');
+                    return false;
+                }
+
+                $('#verifyBtn').addClass('loading').prop('disabled', true);
+            });
+
+            // Resend OTP
+            function startTimer() {
+                countdown = 60;
+                $('#resendLink').addClass('disabled');
+                $('#timer').show();
+
+                resendTimer = setInterval(function() {
+                    countdown--;
+                    $('#countdown').text(countdown);
+
+                    if (countdown <= 0) {
+                        clearInterval(resendTimer);
+                        $('#resendLink').removeClass('disabled');
+                        $('#timer').hide();
+                    }
+                }, 1000);
+            }
+
+            $('#resendLink').on('click', function(e) {
+                e.preventDefault();
+                if ($(this).hasClass('disabled')) return;
+
+                $.post('@Url.Action("ResendOTP", "Account")', {
+                    __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val(),
+                    email: '@Model.Email'
+                }, function(response) {
+                    if (response.success) {
+                        alert('OTP has been resent to your email!');
+                        startTimer();
+                    } else {
+                        alert('Failed to resend OTP. Please try again.');
+                    }
+                });
+            });
+
+            // Auto-start timer on page load
+            startTimer();
+
+            // Auto-focus first input
+            otpInputs.first().focus();
+        });
+    </script>
+</body>
+</html>

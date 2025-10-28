@@ -1,0 +1,226 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\views\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\dto\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\views\\account\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\views\\account\\verifyotp.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\views\\account\\resetpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\connection\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\connection\\dbconnection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|c:\\users\\shaik\\onedrive\\desktop\\bloglytics\\bloglytics\\bloglytics\\bloglytics.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{DD24F7F9-54F7-0A4B-F99C-46DDE8BA8DCA}|Bloglytics\\Bloglytics.csproj|solutionrelative:bloglytics\\bloglytics.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Bloglytics\\Views\\Account\\Register.cshtml",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "Bloglytics\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAowE4BAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-28T19:51:53.828Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Bloglytics\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Bloglytics\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAIwGUBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T19:40:01.989Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserDto.cs",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\DTO\\UserDto.cs",
+              "RelativeDocumentMoniker": "Bloglytics\\DTO\\UserDto.cs",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\DTO\\UserDto.cs",
+              "RelativeToolTip": "Bloglytics\\DTO\\UserDto.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAwwEUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T19:43:25.514Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Bloglytics\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Bloglytics\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAcwCAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T20:43:11.217Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Program.cs",
+              "RelativeDocumentMoniker": "Bloglytics\\Program.cs",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Program.cs",
+              "RelativeToolTip": "Bloglytics\\Program.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAUwDEAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T19:48:42.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "Bloglytics\\Views\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "Bloglytics\\Views\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-28T20:39:49.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ResetPassword.cshtml",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeDocumentMoniker": "Bloglytics\\Views\\Account\\ResetPassword.cshtml",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\ResetPassword.cshtml",
+              "RelativeToolTip": "Bloglytics\\Views\\Account\\ResetPassword.cshtml",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAAEAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-28T19:53:13.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "VerifyOTP.cshtml",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\VerifyOTP.cshtml",
+              "RelativeDocumentMoniker": "Bloglytics\\Views\\Account\\VerifyOTP.cshtml",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\VerifyOTP.cshtml",
+              "RelativeToolTip": "Bloglytics\\Views\\Account\\VerifyOTP.cshtml",
+              "ViewState": "AgIAAA4BAAAAAAAAAAAAABoBAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-28T20:32:32.403Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\appsettings.json",
+              "RelativeDocumentMoniker": "Bloglytics\\appsettings.json",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\appsettings.json",
+              "RelativeToolTip": "Bloglytics\\appsettings.json",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAQwBYAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-27T19:47:55.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Bloglytics\\Views\\Account\\Login.cshtml",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Bloglytics\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAD4BAAAAAAAAAAD4v0sBAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-27T19:41:22.507Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DBConnection.cs",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Connection\\DBConnection.cs",
+              "RelativeDocumentMoniker": "Bloglytics\\Connection\\DBConnection.cs",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Connection\\DBConnection.cs",
+              "RelativeToolTip": "Bloglytics\\Connection\\DBConnection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-27T20:08:50.181Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Bloglytics.csproj",
+              "DocumentMoniker": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Bloglytics.csproj",
+              "RelativeDocumentMoniker": "Bloglytics\\Bloglytics.csproj",
+              "ToolTip": "C:\\Users\\shaik\\OneDrive\\Desktop\\Bloglytics\\Bloglytics\\Bloglytics\\Bloglytics.csproj",
+              "RelativeToolTip": "Bloglytics\\Bloglytics.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-27T19:54:30.767Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

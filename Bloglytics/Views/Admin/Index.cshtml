@@ -1,0 +1,341 @@
+﻿@using Bloglytics.DTO
+@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+        }
+
+            .admin-header h1 {
+                font-size: 36px;
+                margin-bottom: 10px;
+            }
+
+            .admin-header p {
+                font-size: 16px;
+                opacity: 0.9;
+            }
+
+        .quick-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .quick-action-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+            .quick-action-btn:hover {
+                background: rgba(255,255,255,0.3);
+                transform: translateY(-2px);
+            }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+            .stat-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+            .stat-icon.blue {
+                background: linear-gradient(135deg, #667eea, #764ba2);
+                color: white;
+            }
+
+            .stat-icon.green {
+                background: linear-gradient(135deg, #10b981, #059669);
+                color: white;
+            }
+
+            .stat-icon.orange {
+                background: linear-gradient(135deg, #f59e0b, #d97706);
+                color: white;
+            }
+
+            .stat-icon.purple {
+                background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+                color: white;
+            }
+
+            .stat-icon.red {
+                background: linear-gradient(135deg, #ef4444, #dc2626);
+                color: white;
+            }
+
+            .stat-icon.teal {
+                background: linear-gradient(135deg, #14b8a6, #0d9488);
+                color: white;
+            }
+
+            .stat-icon.indigo {
+                background: linear-gradient(135deg, #6366f1, #4f46e5);
+                color: white;
+            }
+
+            .stat-icon.pink {
+                background: linear-gradient(135deg, #ec4899, #db2777);
+                color: white;
+            }
+
+        .stat-value {
+            font-size: 38px;
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #718096;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .admin-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .section-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+            .section-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+
+        .section-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .section-desc {
+            color: #718096;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .btn-manage {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+            .btn-manage:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            }
+
+        @@media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .admin-sections {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+}
+
+<div class="admin-header">
+    <h1>🛡️ Admin Dashboard</h1>
+    <p>Welcome, @Context.Session.GetString("UserName")! Manage your entire Bloglytics platform from here.</p>
+
+    <div class="quick-actions">
+        <a href="@Url.Action("ManageBlogs")" class="quick-action-btn">
+            <i class="fas fa-blog"></i> Manage Blogs
+        </a>
+        <a href="@Url.Action("ManageUsers")" class="quick-action-btn">
+            <i class="fas fa-users"></i> Manage Users
+        </a>
+        <a href="@Url.Action("ManageCategories")" class="quick-action-btn">
+            <i class="fas fa-folder"></i> Categories
+        </a>
+        <a href="@Url.Action("ManageComments")" class="quick-action-btn">
+            <i class="fas fa-comments"></i> Comments
+        </a>
+    </div>
+</div>
+
+<h2 style="font-size: 28px; color: #2d3748; margin-bottom: 25px;">📊 Platform Statistics</h2>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-icon blue">
+            <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-value">@Model.TotalUsers</div>
+        <div class="stat-label">Total Users</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon green">
+            <i class="fas fa-blog"></i>
+        </div>
+        <div class="stat-value">@Model.TotalBlogs</div>
+        <div class="stat-label">Total Blogs</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon orange">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="stat-value">@Model.TotalPublished</div>
+        <div class="stat-label">Published Blogs</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon purple">
+            <i class="fas fa-file-alt"></i>
+        </div>
+        <div class="stat-value">@Model.TotalDrafts</div>
+        <div class="stat-label">Draft Blogs</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon red">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="stat-value">@Model.TotalComments</div>
+        <div class="stat-label">Total Comments</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon teal">
+            <i class="fas fa-clock"></i>
+        </div>
+        <div class="stat-value">@Model.PendingComments</div>
+        <div class="stat-label">Pending Comments</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon indigo">
+            <i class="fas fa-folder-open"></i>
+        </div>
+        <div class="stat-value">@Model.TotalCategories</div>
+        <div class="stat-label">Categories</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-icon pink">
+            <i class="fas fa-eye"></i>
+        </div>
+        <div class="stat-value">@Model.TotalViews.ToString("N0")</div>
+        <div class="stat-label">Total Views</div>
+    </div>
+</div>
+
+<h2 style="font-size: 28px; color: #2d3748; margin: 40px 0 25px;">⚙️ Management Sections</h2>
+
+<div class="admin-sections">
+    <div class="section-card">
+        <div class="section-icon">
+            <i class="fas fa-blog"></i>
+        </div>
+        <h3 class="section-title">Manage Blogs</h3>
+        <p class="section-desc">View, edit, and delete all blog posts from all users</p>
+        <a href="@Url.Action("ManageBlogs")" class="btn-manage">
+            <i class="fas fa-cog"></i> Manage
+        </a>
+    </div>
+
+    <div class="section-card">
+        <div class="section-icon">
+            <i class="fas fa-users"></i>
+        </div>
+        <h3 class="section-title">Manage Users</h3>
+        <p class="section-desc">Control user accounts, roles, and permissions</p>
+        <a href="@Url.Action("ManageUsers")" class="btn-manage">
+            <i class="fas fa-cog"></i> Manage
+        </a>
+    </div>
+
+    <div class="section-card">
+        <div class="section-icon">
+            <i class="fas fa-folder"></i>
+        </div>
+        <h3 class="section-title">Manage Categories</h3>
+        <p class="section-desc">Add, edit, and organize blog categories</p>
+        <a href="@Url.Action("ManageCategories")" class="btn-manage">
+            <i class="fas fa-cog"></i> Manage
+        </a>
+    </div>
+
+    <div class="section-card">
+        <div class="section-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+        <h3 class="section-title">Manage Comments</h3>
+        <p class="section-desc">Approve or reject pending comments</p>
+        <a href="@Url.Action("ManageComments")" class="btn-manage">
+            <i class="fas fa-cog"></i> Manage
+        </a>
+    </div>
+</div>

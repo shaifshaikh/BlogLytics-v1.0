@@ -1,0 +1,499 @@
+﻿@using Bloglytics.DTO
+@model BlogDetailViewModel
+@{
+    ViewData["Title"] = Model.Blog.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .blog-detail-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .blog-category {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .blog-title {
+            font-size: 42px;
+            color: #2d3748;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            color: #718096;
+            font-size: 15px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .featured-image {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 15px;
+            object-fit: cover;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .blog-content {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+            .blog-content p {
+                font-size: 18px;
+                line-height: 1.8;
+                color: #4a5568;
+                margin-bottom: 20px;
+            }
+
+        .blog-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-action {
+            padding: 12px 25px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            color: #4a5568;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            .btn-action:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+        .btn-like {
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+            .btn-like.liked {
+                background: #ef4444;
+                color: white;
+            }
+
+        .btn-edit {
+            background: #f59e0b;
+            color: white;
+            border-color: #f59e0b;
+            text-decoration: none;
+        }
+
+        .btn-delete {
+            background: #ef4444;
+            color: white;
+            border-color: #ef4444;
+        }
+
+        .comments-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: #2d3748;
+            margin-bottom: 30px;
+        }
+
+        .comment-form {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+            .comment-form textarea {
+                width: 100%;
+                padding: 15px;
+                border: 2px solid #e2e8f0;
+                border-radius: 10px;
+                font-size: 15px;
+                resize: vertical;
+                min-height: 120px;
+            }
+
+                .comment-form textarea:focus {
+                    outline: none;
+                    border-color: #667eea;
+                }
+
+        .btn-submit {
+            margin-top: 15px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .btn-submit:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            }
+
+        .comment {
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+            .comment:last-child {
+                border-bottom: none;
+            }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .comment-author {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 15px;
+        }
+
+        .comment-date {
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        .comment-content {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        .related-posts {
+            margin-top: 60px;
+        }
+
+            .related-posts h3 {
+                font-size: 28px;
+                color: #2d3748;
+                margin-bottom: 30px;
+                text-align: center;
+            }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .related-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+            .related-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .related-image {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+        }
+
+        .related-content {
+            padding: 20px;
+        }
+
+        .related-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .no-comments {
+            text-align: center;
+            padding: 40px;
+            color: #a0aec0;
+        }
+
+        @@media (max-width: 768px) {
+            .blog-content {
+                padding: 25px;
+            }
+
+            .blog-title {
+                font-size: 28px;
+            }
+
+            .blog-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+}
+
+<div class="blog-detail-container">
+    <div class="blog-header">
+        <span class="blog-category">@Model.Blog.CategoryName</span>
+        <h1 class="blog-title">@Model.Blog.Title</h1>
+        <div class="blog-meta">
+            <div class="meta-item">
+                <i class="fas fa-user"></i>
+                <span>@Model.Blog.AuthorName</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-calendar"></i>
+                <span>@Model.Blog.PublishedAt?.ToString("MMMM dd, yyyy")</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-eye"></i>
+                <span>@Model.Blog.ViewCount views</span>
+            </div>
+            <div class="meta-item">
+                <i class="fas fa-comments"></i>
+                <span>@Model.Comments.Count comments</span>
+            </div>
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.Blog.FeaturedImage))
+    {
+        <img src="@Model.Blog.FeaturedImage" alt="@Model.Blog.Title" class="featured-image" />
+    }
+
+    <div class="blog-content">
+        @Html.Raw(Model.Blog.Content.Replace("\n", "<br/>"))
+    </div>
+
+    <div class="blog-actions">
+        <div class="action-buttons">
+            <button class="btn-action btn-like @(Model.HasUserLiked ? "liked" : "")"
+                    id="likeBtn"
+                    onclick="toggleLike(@Model.Blog.PostId)">
+                <i class="fas fa-heart"></i>
+                <span id="likeCount">@Model.LikeCount</span>
+                <span>Like</span>
+            </button>
+            <button class="btn-action">
+                <i class="fas fa-share-alt"></i>
+                <span>Share</span>
+            </button>
+        </div>
+
+        @if (Model.CanEdit || Model.CanDelete)
+        {
+            <div class="action-buttons">
+                @if (Model.CanEdit)
+                {
+                    <a href="@Url.Action("Edit", new { id = Model.Blog.PostId })" class="btn-action btn-edit">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                }
+                @if (Model.CanDelete)
+                {
+                    <button class="btn-action btn-delete" onclick="deleteBlog(@Model.Blog.PostId)">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                }
+            </div>
+        }
+    </div>
+
+    <div class="comments-section">
+        <h2 class="section-title">💬 Comments (@Model.Comments.Count)</h2>
+
+        @if (Context.Session.GetString("UserId") != null)
+        {
+            <div class="comment-form">
+                <form asp-action="AddComment" asp-controller="Blog" method="post">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="PostId" value="@Model.Blog.PostId" />
+                    <textarea name="Content" placeholder="Write your comment..." required></textarea>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Post Comment
+                    </button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="comment-form" style="text-align: center;">
+                <p style="color: #718096; margin-bottom: 15px;">Please login to comment</p>
+                <a href="@Url.Action("Login", "Account")" class="btn-submit" style="display: inline-block; text-decoration: none;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+        }
+
+        <div class="comments-list">
+            @if (Model.Comments != null && Model.Comments.Any())
+            {
+                foreach (var comment in Model.Comments)
+                {
+                    <div class="comment">
+                        <div class="comment-header">
+                            <span class="comment-author">
+                                <i class="fas fa-user-circle"></i> @comment.CommenterName
+                            </span>
+                            <span class="comment-date">
+                                @comment.CreatedAt.ToString("MMM dd, yyyy hh:mm tt")
+                            </span>
+                        </div>
+                        <div class="comment-content">
+                            @comment.Content
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="no-comments">
+                    <i class="fas fa-comment-slash" style="font-size: 48px; opacity: 0.3; margin-bottom: 10px;"></i>
+                    <p>No comments yet. Be the first to comment!</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    @if (Model.RelatedBlogs != null && Model.RelatedBlogs.Any())
+    {
+        <div class="related-posts">
+            <h3>📚 Related Posts</h3>
+            <div class="related-grid">
+                @foreach (var relatedBlog in Model.RelatedBlogs)
+                {
+                    <div class="related-card" onclick="window.location='@Url.Action("Detail", new { id = relatedBlog.PostId })'">
+                        <div class="related-image">
+                            @if (!string.IsNullOrEmpty(relatedBlog.FeaturedImage))
+                            {
+                                <img src="@relatedBlog.FeaturedImage" style="width:100%; height:100%; object-fit:cover;" />
+                            }
+                            else
+                            {
+                                <i class="fas fa-blog"></i>
+                            }
+                        </div>
+                        <div class="related-content">
+                            <div class="related-title">@relatedBlog.Title</div>
+                            <div style="color: #718096; font-size: 13px; margin-top: 8px;">
+                                <i class="fas fa-eye"></i> @relatedBlog.ViewCount views
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        let hasLiked = @Model.HasUserLiked.ToString().ToLower();
+
+        function toggleLike(postId) {
+            $.ajax({
+                url: '@Url.Action("Like", "Blog")',
+                type: 'POST',
+                data: { id: postId },
+                success: function(response) {
+                    if (response.success) {
+                        hasLiked = response.liked;
+                        $('#likeCount').text(response.likeCount);
+
+                        if (response.liked) {
+                            $('#likeBtn').addClass('liked');
+                        } else {
+                            $('#likeBtn').removeClass('liked');
+                        }
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: function() {
+                    alert('Error processing like');
+                }
+            });
+        }
+
+        function deleteBlog(postId) {
+            if (confirm('Are you sure you want to delete this blog?')) {
+                $.ajax({
+                    url: '@Url.Action("Delete", "Blog")',
+                    type: 'POST',
+                    data: {
+                        id: postId,
+                        __RequestVerificationToken: $('input[name="__RequestVerificationToken"]').val()
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Blog deleted successfully!');
+                            window.location = '@Url.Action("MyBlogs")';
+                        } else {
+                            alert('Error: ' + response.message);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+}

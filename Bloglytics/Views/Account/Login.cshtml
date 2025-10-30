@@ -298,11 +298,22 @@
                 <h4>🔐 Demo Credentials</h4>
                 <p><strong>Admin:</strong> admin@bloglytics.com / Admin@123</p>
                 <p><strong>Blogger:</strong> john.doe@example.com / John@123</p>
+                <div>
+                    Admin:
+                    Email: admin@bloglytics.com
+                    Password: Admin@123
+                    <br />
+                    Bloggers:
+                    Email: john.doe@example.com
+                    Password: John@123
+                    <br />
+                    Email: jane.smith@example.com
+                    Password: Jane@123
+                </div>
             </div>
 
             <form asp-action="Login" asp-controller="Account" method="post" id="loginForm">
                 @Html.AntiForgeryToken()
-                /* It is used for preventing from any csrf attacks */
 
                 <div asp-validation-summary="ModelOnly" class="validation-summary-errors"></div>
 

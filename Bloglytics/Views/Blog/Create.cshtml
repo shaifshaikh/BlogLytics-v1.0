@@ -1,0 +1,362 @@
+﻿@using Bloglytics.DTO
+@model CreateBlogViewModel
+@{
+    ViewData["Title"] = "Create New Blog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .create-blog-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+            .page-header h1 {
+                font-size: 36px;
+                color: #2d3748;
+                margin-bottom: 10px;
+            }
+
+            .page-header p {
+                color: #718096;
+                font-size: 16px;
+            }
+
+        .form-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 10px;
+                color: #2d3748;
+                font-weight: 600;
+                font-size: 15px;
+            }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+            .form-control:focus {
+                outline: none;
+                border-color: #667eea;
+                box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            }
+
+        textarea.form-control {
+            min-height: 400px;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 5px;
+            display: block;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .file-upload {
+            position: relative;
+        }
+
+            .file-upload input[type="file"] {
+                display: none;
+            }
+
+        .file-upload-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #f8f9fa;
+            border: 2px dashed #e2e8f0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+            .file-upload-btn:hover {
+                border-color: #667eea;
+                background: rgba(102, 126, 234, 0.05);
+            }
+
+            .file-upload-btn i {
+                font-size: 24px;
+                color: #667eea;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+        .file-name {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #718096;
+        }
+
+        .image-preview {
+            margin-top: 15px;
+            max-width: 300px;
+            border-radius: 10px;
+            display: none;
+        }
+
+            .image-preview img {
+                width: 100%;
+                border-radius: 10px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+            .btn-primary:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+            .btn-secondary:hover {
+                background: #5a6268;
+            }
+
+        .btn-outline {
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+        }
+
+            .btn-outline:hover {
+                background: #667eea;
+                color: white;
+            }
+
+        .helper-text {
+            font-size: 13px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @@keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .btn-primary.loading .btn-text {
+            display: none;
+        }
+
+        .btn-primary.loading .spinner {
+            display: block;
+        }
+
+        @@media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-card {
+                padding: 25px;
+            }
+        }
+    </style>
+}
+
+<div class="create-blog-container">
+    <div class="page-header">
+        <h1>✍️ Create New Blog Post</h1>
+        <p>Share your thoughts and ideas with the world</p>
+    </div>
+
+    <div class="form-card">
+        <form asp-action="Create" asp-controller="Blog" method="post" enctype="multipart/form-data" id="createBlogForm">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label asp-for="Title">Blog Title *</label>
+                <input asp-for="Title" class="form-control" placeholder="Enter an engaging title..." />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="CategoryId">Category *</label>
+                    <select asp-for="CategoryId" class="form-control">
+                        <option value="">Select Category</option>
+                        @foreach (var category in ViewBag.Categories as IEnumerable<Category>)
+                        {
+                            <option value="@category.CategoryId">@category.CategoryName</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Status">Status *</label>
+                    <select asp-for="Status" class="form-control">
+                        <option value="Draft">Save as Draft</option>
+                        <option value="Published">Publish Now</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Summary">Summary (Optional)</label>
+                <textarea asp-for="Summary" class="form-control" rows="3"
+                          placeholder="Brief description of your blog (shown in listings)..."
+                          style="min-height: 100px;"></textarea>
+                <span asp-validation-for="Summary" class="text-danger"></span>
+                <div class="helper-text">Maximum 500 characters</div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Content">Content *</label>
+                <textarea asp-for="Content" class="form-control"
+                          placeholder="Write your blog content here..."></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Featured Image (Optional)</label>
+                <div class="file-upload">
+                    <label for="featuredImage" class="file-upload-btn">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <div>Click to upload image</div>
+                        <small>JPG, PNG, GIF (Max 5MB)</small>
+                    </label>
+                    <input type="file" id="featuredImage" name="FeaturedImage" accept="image/*" />
+                    <div class="file-name" id="fileName"></div>
+                    <div class="image-preview" id="imagePreview">
+                        <img src="" alt="Preview" id="previewImg" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <span class="btn-text">
+                        <i class="fas fa-paper-plane"></i> Create Blog
+                    </span>
+                    <div class="spinner"></div>
+                </button>
+                <button type="button" class="btn btn-outline" onclick="window.location='@Url.Action("MyBlogs")'">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.5/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Form submission
+            $('#createBlogForm').on('submit', function() {
+                if ($(this).valid()) {
+                    $('#submitBtn').addClass('loading').prop('disabled', true);
+                }
+            });
+
+            // Image preview
+            $('#featuredImage').on('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Show file name
+                    $('#fileName').text('Selected: ' + file.name);
+
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        $('#previewImg').attr('src', e.target.result);
+                        $('#imagePreview').fadeIn();
+                    }
+                    reader.readAsDataURL(file);
+
+                    // Validate file size
+                    if (file.size > 5 * 1024 * 1024) {
+                        alert('File size exceeds 5MB limit!');
+                        $('#featuredImage').val('');
+                        $('#fileName').text('');
+                        $('#imagePreview').hide();
+                    }
+                }
+            });
+
+            // Auto-save draft functionality (optional enhancement)
+            let autoSaveTimer;
+            $('.form-control').on('input', function() {
+                clearTimeout(autoSaveTimer);
+                autoSaveTimer = setTimeout(function() {
+                    // Could implement auto-save to localStorage here
+                    console.log('Auto-save triggered');
+                }, 3000);
+            });
+        });
+    </script>
+}

@@ -1,3 +1,4 @@
+using Bloglytics.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -52,7 +53,9 @@ options.Events = new JwtBearerEvents
     });
 
 builder.Services.AddAuthorization();
-
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 // Add HttpContextAccessor
 builder.Services.AddHttpContextAccessor();
 

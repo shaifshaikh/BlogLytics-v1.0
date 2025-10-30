@@ -1,0 +1,244 @@
+﻿@using Bloglytics.DTO
+@model List<Comment>
+@{
+    ViewData["Title"] = "Manage Comments - Admin";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Styles {
+    <style>
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+            .page-header h1 {
+                font-size: 32px;
+                color: #2d3748;
+            }
+
+        .btn-back {
+            background: #6c757d;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .comments-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+
+        .comment-item {
+            padding: 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+        }
+
+            .comment-item:hover {
+                border-color: #667eea;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .comment-user-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .comment-user {
+            font-weight: 600;
+            color: #2d3748;
+            font-size: 16px;
+        }
+
+        .comment-post {
+            color: #667eea;
+            font-size: 13px;
+        }
+
+        .comment-date {
+            color: #a0aec0;
+            font-size: 13px;
+        }
+
+        .comment-content {
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-approve {
+            padding: 8px 20px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .btn-approve:hover {
+                background: #059669;
+            }
+
+        .btn-delete-comment {
+            padding: 8px 20px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+            .btn-delete-comment:hover {
+                background: #dc2626;
+            }
+
+        .no-comments {
+            text-align: center;
+            padding: 60px 20px;
+            color: #a0aec0;
+        }
+
+            .no-comments i {
+                font-size: 60px;
+                margin-bottom: 15px;
+                opacity: 0.3;
+            }
+    </style>
+}
+
+<div class="page-header">
+    <h1>💬 Manage Pending Comments</h1>
+    <a href="@Url.Action("Index")" class="btn-back">
+        <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+</div>
+
+<div class="comments-container">
+    @if (Model != null && Model.Any())
+    {
+        <h3 style="margin-bottom: 25px; color: #2d3748;">
+            ⏳ @Model.Count Pending Comment(s)
+        </h3>
+
+        @foreach (var comment in Model)
+        {
+            <div class="comment-item" id="comment-@comment.CommentId">
+                <div class="comment-header">
+                    <div class="comment-user-info">
+                        <span class="comment-user">
+                            <i class="fas fa-user-circle"></i> @comment.CommenterName
+                        </span>
+                        <span class="comment-post">
+                            on: @comment.PostTitle
+                        </span>
+                        <span class="comment-date">
+                            <i class="fas fa-clock"></i> @comment.CreatedAt.ToString("MMMM dd, yyyy hh:mm tt")
+                        </span>
+                    </div>
+                </div>
+
+                <div class="comment-content">
+                    @comment.Content
+                </div>
+
+                <div class="comment-actions">
+                    <button onclick="approveComment(@comment.CommentId)" class="btn-approve">
+                        <i class="fas fa-check"></i> Approve
+                    </button>
+                    <button onclick="deleteComment(@comment.CommentId)" class="btn-delete-comment">
+                        <i class="fas fa-trash"></i> Delete
+                    </button>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="no-comments">
+            <i class="fas fa-check-circle"></i>
+            <h3>All caught up!</h3>
+            <p>No pending comments to review</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function approveComment(commentId) {
+            $.ajax({
+                url: '@Url.Action("ApproveComment", "Admin")',
+                type: 'POST',
+                data: { commentId: commentId },
+                success: function(response) {
+                    if (response.success) {
+                        $('#comment-' + commentId).fadeOut(300, function() {
+                            $(this).remove();
+                            if ($('.comment-item').length === 0) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        alert('Error: ' + response.message);
+                    }
+                },
+                error: function() {
+                    alert('Error approving comment');
+                }
+            });
+        }
+
+        function deleteComment(commentId) {
+            if (confirm('Delete this comment permanently?')) {
+                $.ajax({
+                    url: '@Url.Action("DeleteComment", "Admin")',
+                    type: 'POST',
+                    data: { commentId: commentId },
+                    success: function(response) {
+                        if (response.success) {
+                            $('#comment-' + commentId).fadeOut(300, function() {
+                                $(this).remove();
+                                if ($('.comment-item').length === 0) {
+                                    location.reload();
+                                }
+                            });
+                        } else {
+                            alert('Error: ' + response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('Error deleting comment');
+                    }
+                });
+            }
+        }
+    </script>
+}

@@ -1,6 +1,6 @@
 ﻿using Bloglytics.DTO;
 using Bloglytics.Models;
-using Bloglytics.Repositories.Interfaces;
+using Bloglytics.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 

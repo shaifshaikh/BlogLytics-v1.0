@@ -246,7 +246,7 @@
                        placeholder="Search by title or author..." 
                        value="@Model.SearchQuery" />
             </div>
-
+@* 
             <div class="filter-group">
                 <label>Status</label>
                 <select name="status" class="filter-control">
@@ -255,6 +255,24 @@
                     <option value="Draft" @(Model.SelectedStatus == "Draft" ? "selected" : "")>Draft</option>
                     <option value="Archived" @(Model.SelectedStatus == "Archived" ? "selected" : "")>Archived</option>
                 </select>
+            </div>
+ *@
+
+            <div class="filter-group">
+                <label>Status</label>
+                @Html.DropDownListFor(
+                model => model.SelectedStatus,
+                                new SelectList(
+                                new[] {
+                                new { Value = "", Text = "All Status" },
+                                new { Value = "Published", Text = "Published" },
+                                new { Value = "Draft", Text = "Draft" },
+                                new { Value = "Archived", Text = "Archived" }
+                                },
+                                "Value", "Text", Model.SelectedStatus
+                                ),
+                                new { @class = "filter-control", name = "status" }
+                                )
             </div>
 
             <button type="submit" class="btn-filter">

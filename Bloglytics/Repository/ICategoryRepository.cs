@@ -1,7 +1,7 @@
 ﻿using Bloglytics.DTO;
 using Bloglytics.Models;
 
-namespace Bloglytics.Repository
+namespace Bloglytics.Repository { 
     public interface ICategoryRepository
     {
         Task<IEnumerable<Category>> GetAllCategoriesAsync();

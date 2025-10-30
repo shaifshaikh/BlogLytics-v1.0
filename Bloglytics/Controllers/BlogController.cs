@@ -1,6 +1,6 @@
 ﻿using Bloglytics.DTO;
 using Bloglytics.Helpers;
-using Bloglytics.Repositories.Interfaces;
+using Bloglytics.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 //using Microsoft.AspNetCore.Mvc;

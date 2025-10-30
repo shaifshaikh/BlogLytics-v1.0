@@ -1,6 +1,7 @@
 ﻿using Bloglytics.DTO;
 using Bloglytics.Models;
-using Bloglytics.Repositories.Interfaces;
+using Bloglytics.Repository;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 
 namespace Bloglytics.Repository { 

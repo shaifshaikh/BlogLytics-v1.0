@@ -1,5 +1,5 @@
 ﻿using Bloglytics.DTO;
-using Bloglytics.Repositories.Interfaces;
+using Bloglytics.Repository;
 using Microsoft.Data.SqlClient;
 
 namespace Bloglytics.Repository
